@@ -1,43 +1,75 @@
-# REWEAR — prototype Android (Expo)
+# REWEAR — application mobile (Expo / React Native)
 
-## Fonctionnalités de démonstration
-- Catalogue de produits avec recherche et catégories
-- Favoris et fiches articles
-- Formulaire de publication local
-- Espace de conversations simulées
-- Profil vendeur
-- Abonnements Free / Plus / Pro / Business
+REWEAR est un prototype de marketplace : vêtements, chaussures, accessoires et autres objets.
 
-**Important :** ce dépôt contient un prototype. Les annonces et messages ne sont pas encore synchronisés entre utilisateurs. Aucun paiement réel n'est traité. Les prix d'abonnement sont des hypothèses, pas des tarifs définitifs.
+## Tester rapidement sur Android avec Expo Go
 
-## Tester sur Android
-1. Installer Expo Go : https://expo.dev/go
-2. Ouvrir le projet avec Expo Snack : https://snack.expo.dev/
-3. Copier le contenu de `App.js` dans un nouveau Snack.
+Le projet utilise **Expo SDK 54**. Expo Go doit être compatible avec ce SDK.
 
-## Générer un APK
-Avec Node.js et EAS CLI :
+### Depuis un téléphone Android uniquement
+1. Installe Expo Go depuis https://expo.dev/go et sélectionne la version Android compatible avec **SDK 54** si l'application du Play Store n'est pas compatible.
+2. Ouvre https://snack.expo.dev/ dans le navigateur.
+3. Crée un nouveau Snack et remplace le contenu de `App.js` par celui du fichier `App.js` de ce dépôt.
+4. Attends le chargement, puis ouvre le projet dans Expo Go avec le QR code ou le lien affiché.
+
+Le Snack est une copie de test : les modifications faites dans Snack ne sont pas automatiquement enregistrées dans GitHub.
+
+### Depuis un ordinateur ou un terminal compatible
+Clone le dépôt, puis exécute :
+
 ```bash
 npm install
-npm install -g eas-cli
-eas login
-eas build:configure
-eas build -p android --profile preview
+npx expo start --tunnel
 ```
-Le lien de téléchargement de l'APK sera fourni par Expo à la fin de la compilation.
 
-## Backend avant lancement public
-- Configurer Supabase Auth, PostgreSQL et Storage.
-- Ajouter l'envoi sécurisé de photos.
-- Remplacer la messagerie simulée par une vraie messagerie.
-- Ajouter signalements, blocage et modération.
-- Connecter un prestataire de paiement compatible.
-- Faire auditer les règles RLS et tester la sécurité.
-- Ne jamais afficher les adresses personnelles ou numéros privés des utilisateurs.
+Scanne le QR code avec Expo Go. Le mode tunnel est utile lorsque le téléphone et l'ordinateur ne sont pas sur le même réseau.
 
-Pour les comptes de paiement et la publication officielle, l'aide d'un parent/tuteur ou d'un adulte responsable peut être nécessaire.
+## Vérifier la configuration
+
+```bash
+npx expo-doctor
+npx expo install --fix
+```
+
+N'exécute `expo install --fix` que si Expo Doctor signale des versions incompatibles.
+
+## Générer un APK Android
+
+L'APK est un fichier installable. Ce n'est pas la même chose qu'Expo Go.
+
+```bash
+npm install
+npx eas-cli@latest login
+npx eas-cli@latest build:configure
+npx eas-cli@latest build -p android --profile preview
+```
+
+Le profil `preview` dans `eas.json` produit un APK distribuable pour les tests. La compilation se fait dans le cloud Expo. Le lien de téléchargement apparaît à la fin du build.
+
+## Fonctionnalités actuellement en démonstration
+
+- Catalogue, recherche et catégories
+- Favoris et fiches articles
+- Formulaire de publication local
+- Conversations simulées
+- Profil vendeur
+- Exemples d'abonnements Free / Plus / Pro / Business
+
+## Limites à connaître avant un lancement public
+
+Ce dépôt est un **prototype front-end**, pas encore une marketplace prête à accueillir de vrais clients :
+- Les comptes et annonces ne sont pas synchronisés entre téléphones.
+- Les conversations sont simulées.
+- Les photos ne sont pas encore téléversées vers un serveur.
+- Aucun paiement réel ni abonnement payant n'est activé.
+- Les tarifs affichés sont des exemples, pas des prix validés.
+
+Avant le lancement, il faudra connecter et sécuriser une base de données, l'authentification, le stockage des images, la messagerie, la modération, les signalements et un prestataire de paiement. Les règles de sécurité Supabase doivent être vérifiées et testées avant toute mise en production.
+
+Ne publie pas d'adresse personnelle ni de numéro privé dans les annonces. Prévois des rencontres dans des lieux publics et demande l'aide d'un adulte responsable pour les démarches de paiement ou de publication officielle.
 
 ## Identité
+
 - Nom : REWEAR
-- Promesse : Acheter. Vendre. Échanger.
-- Marché pilote proposé : Ouagadougou, puis extension progressive.
+- Signature : Acheter. Vendre. Échanger.
+- Marché pilote envisagé : Ouagadougou, puis extension progressive.

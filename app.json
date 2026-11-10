@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "REWEAR",
+    "slug": "rewear-marketplace",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.rewear.marketplace"
+    },
+    "splash": {
+      "backgroundColor": "#F6F5F1"
+    }
+  }
+}

@@ -7,7 +7,7 @@
     "start": "expo start",
     "start:tunnel": "expo start --tunnel",
     "android": "expo start --android",
-    "doctor": "expo-doctor"
+    "doctor": "npx expo-doctor"
   },
   "dependencies": {
     "expo": "~54.0.0",

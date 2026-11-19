@@ -86,3 +86,17 @@ footer{padding:28px 8%;border-top:1px solid var(--line)}
 .detail-modal .detail-contact{background:var(--green);color:white}
 .detail-modal .detail-fav{background:var(--lime);color:var(--green)}
 @media(max-width:650px){.detail-modal .detail-layout{grid-template-columns:1fr}.detail-modal .detail-photo{max-height:260px;aspect-ratio:16/9}.detail-modal .detail-copy{padding-top:0}}
+
+/* REWEAR Burkina Faso — local commerce controls */
+.price-filter{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:-8px 0 24px;color:#687267;font-size:10px}
+.price-filter label{display:flex;align-items:center;gap:7px;font-weight:700}
+.price-filter input{width:105px;padding:9px;border:1px solid var(--line);background:white;color:var(--ink)}
+.price-filter span{margin-left:auto}
+.chat-modal{width:min(520px,100%)}
+.chat-messages{height:220px;overflow:auto;background:#eef0e9;padding:13px;margin:14px 0;display:flex;flex-direction:column;gap:8px}
+.chat-bubble{align-self:flex-end;max-width:85%;margin:0;padding:10px 13px;background:#d7f36b;color:#243529;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.chat-empty{color:#7c8478;text-align:center;font-size:11px;margin:auto}
+#chatForm{display:flex;gap:8px}
+#chatForm input{flex:1;min-width:0}
+#chatForm .submit-btn{width:auto;margin:0}
+@media(max-width:650px){.price-filter span{width:100%;margin:0}.filters{flex-wrap:wrap}.filters select{min-width:120px}}

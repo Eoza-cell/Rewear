@@ -1,31 +1,30 @@
-# REWEAR Burkina Faso
+# REWEAR Burkina Faso 🇧🇫
 
 **Acheter. Vendre. Échanger.**
 
-REWEAR est une marketplace web pensée pour le Burkina Faso : vêtements, chaussures, accessoires, téléphones, informatique, maison, livres et autres objets. Les prix sont affichés en FCFA.
+REWEAR est une vitrine marketplace pensée pour le Burkina Faso : vêtements, chaussures, accessoires, téléphones, maison, livres et autres objets. Prix affichés en FCFA.
 
-## Site web
+## Site
 https://eoza-cell.github.io/Rewear/
 
-## Fonctionnalités de la vitrine
-- Catalogue et catégories.
-- Recherche par nom, catégorie et vendeur.
-- Filtre par ville et fourchette de prix en FCFA.
-- Tri par prix croissant ou décroissant.
-- Favoris enregistrés dans le navigateur.
-- Fiches produits et formulaire de publication.
-- Villes proposées : Ouagadougou, Bobo-Dioulasso, Koudougou, Ouahigouya, Banfora, Kaya, Fada N'Gourma, Tenkodogo, Gaoua et Dori.
-- Messagerie de démonstration enregistrée localement sur l'appareil.
+## Fonctionnalités de démonstration
+- Catalogue, catégories et recherche.
+- Filtres par ville et par fourchette de prix.
+- Tri par prix, favoris et fiches détaillées.
+- Publication d'annonce avec photo depuis le téléphone (stockage local du navigateur).
+- Profil local et connexion facultative avec un compte Puter.
+- Assistant IA **OUEDRAOGO**, créé par le **Clan Zenin**, intégré avec Puter.js.
+- Visuels graphiques originaux inspirés des motifs textiles du Burkina Faso, au lieu de photos de stock étrangères.
+
+## Puter.js
+La bibliothèque est chargée depuis `https://js.puter.com/v2/`. OUEDRAOGO utilise `puter.ai.chat()`. La connexion Puter s'effectue via `puter.auth.signIn()`.
+
+Puter.js utilise un modèle « user-pays » : les fonctions IA et cloud peuvent nécessiter le compte Puter de chaque utilisateur et leur usage. Ce n'est pas une API illimitée garantie et aucun secret API n'est stocké dans ce dépôt.
 
 ## Technologies
-HTML, CSS et JavaScript. Le site est publié avec GitHub Pages depuis le dossier `docs/`.
+HTML, CSS et JavaScript, publiés avec GitHub Pages depuis `docs/`.
 
-## Publication
-Dans GitHub : **Settings → Pages → Deploy from a branch**, sélectionne `main` puis `/docs`.
+## Limites importantes
+Cette version reste un prototype front-end. Les profils locaux, annonces, favoris, photos et conversations de démonstration sont enregistrés dans le navigateur et ne sont pas partagés entre téléphones. La connexion Puter authentifie un compte Puter, pas un compte REWEAR indépendant. Il n'y a pas encore de base de données REWEAR, de messagerie entre membres, de paiement ou de livraison connectés.
 
-## Limites actuelles
-Cette version est un prototype front-end. Les annonces, favoris et messages sont stockés localement dans le navigateur : ils ne sont pas partagés entre appareils. Les comptes, profils vendeurs vérifiés, photos hébergées, messagerie en temps réel, livraison et paiements ne sont pas encore connectés à un backend. Aucun paiement n'est encaissé sur ce site.
-
-Avant un lancement public, il faudra connecter une base de données sécurisée, l'authentification, le stockage d'images, la modération, les signalements et un prestataire de paiement adapté au Burkina Faso. Prévoir des consignes de sécurité pour les rencontres et les transactions.
-
-**REWEAR — Le style circule au Burkina Faso.**
+Avant le lancement public, il faudra un backend sécurisé, des comptes REWEAR, un stockage de photos, des outils de modération et des solutions de paiement adaptées au Burkina Faso. Ne publie pas d'adresse personnelle ou de numéro privé dans une annonce.

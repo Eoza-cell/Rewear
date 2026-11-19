@@ -1,12 +1,12 @@
 const productsSeed=[
-{id:1,title:"Veste denim vintage",category:"Vêtements",price:8500,size:"M",condition:"Très bon état",seller:"Aïcha",tag:"COUP DE CŒUR",image:"https://images.unsplash.com/photo-1543076447-215ad9ba6923?w=700&q=85"},
-{id:2,title:"Sac en cuir camel",category:"Accessoires",price:12000,size:"Unique",condition:"Excellent état",seller:"Mariam",tag:"PIÈCE UNIQUE",image:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&q=85"},
-{id:3,title:"Sneakers rétro",category:"Chaussures",price:18000,size:"39",condition:"Très bon état",seller:"Yanis",tag:"BON PLAN",image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=85"},
-{id:4,title:"Chemise lin naturel",category:"Vêtements",price:6500,size:"L",condition:"Comme neuf",seller:"Inès",tag:"SELECTION",image:"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=700&q=85"},
-{id:5,title:"Lunettes soleil rétro",category:"Accessoires",price:4500,size:"Unique",condition:"Bon état",seller:"Kader",tag:"PETIT PRIX",image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&q=85"},
-{id:6,title:"Baskets minimalistes",category:"Chaussures",price:14500,size:"40",condition:"Excellent état",seller:"Sonia",tag:"COUP DE CŒUR",image:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700&q=85"},
-{id:7,title:"Pull doux oversize",category:"Vêtements",price:7000,size:"XL",condition:"Très bon état",seller:"Fatou",tag:"SELECTION",image:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=700&q=85"},
-{id:8,title:"Lampe design",category:"Maison",price:9500,size:"Unique",condition:"Bon état",seller:"Nadia",tag:"TROUVAILLE",image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=700&q=85"}
+{id:1,title:"Veste denim vintage",category:"Vêtements",price:8500,size:"M",condition:"Très bon état",seller:"Aïcha",city:"Ouagadougou",tag:"COUP DE CŒUR",image:"https://images.unsplash.com/photo-1543076447-215ad9ba6923?w=700&q=85"},
+{id:2,title:"Sac en cuir camel",category:"Accessoires",price:12000,size:"Unique",condition:"Excellent état",seller:"Mariam",city:"Bobo-Dioulasso",tag:"PIÈCE UNIQUE",image:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&q=85"},
+{id:3,title:"Sneakers rétro",category:"Chaussures",price:18000,size:"39",condition:"Très bon état",seller:"Yanis",city:"Ouagadougou",tag:"BON PLAN",image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=85"},
+{id:4,title:"Chemise lin naturel",category:"Vêtements",price:6500,size:"L",condition:"Comme neuf",seller:"Inès",city:"Koudougou",tag:"SELECTION",image:"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=700&q=85"},
+{id:5,title:"Lunettes soleil rétro",category:"Accessoires",price:4500,size:"Unique",condition:"Bon état",seller:"Kader",city:"Ouagadougou",tag:"PETIT PRIX",image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&q=85"},
+{id:6,title:"Baskets minimalistes",category:"Chaussures",price:14500,size:"40",condition:"Excellent état",seller:"Sonia",city:"Bobo-Dioulasso",tag:"COUP DE CŒUR",image:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700&q=85"},
+{id:7,title:"Pull doux oversize",category:"Vêtements",price:7000,size:"XL",condition:"Très bon état",seller:"Fatou",city:"Ouahigouya",tag:"SELECTION",image:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=700&q=85"},
+{id:8,title:"Lampe design",category:"Maison",price:9500,size:"Unique",condition:"Bon état",seller:"Nadia",city:"Ouagadougou",tag:"TROUVAILLE",image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=700&q=85"}
 ];
 const $=s=>document.querySelector(s);const $$=s=>document.querySelectorAll(s);
 let products=[...productsSeed,...JSON.parse(localStorage.getItem("rewear-products")||"[]")];let favorites=JSON.parse(localStorage.getItem("rewear-favs")||"[]");let category="Tout",onlyFav=false;
@@ -19,7 +19,7 @@ $$(".category-card").forEach(b=>b.onclick=()=>{$$(".category-card").forEach(x=>x
 $("#searchInput").oninput=render;$("#sortSelect").onchange=render;$("#favFilter").onclick=()=>{onlyFav=!onlyFav;$("#favFilter").classList.toggle("active",onlyFav);render()};$("#favNav").onclick=()=>{onlyFav=true;$("#favFilter").classList.add("active");render();$("#shop").scrollIntoView({behavior:"smooth"})};$("#searchToggle").onclick=()=>{$("#searchInput").focus();$("#shop").scrollIntoView({behavior:"smooth"})};$("#viewAll").onclick=()=>{$("#searchInput").value="";category="Tout";onlyFav=false;$$(".category-card").forEach(x=>x.classList.toggle("selected",x.dataset.category==="Tout"));$("#favFilter").classList.remove("active");render()};
 function openModal(){$("#sellModal").classList.add("open");document.body.style.overflow="hidden"}function closeModal(){$("#sellModal").classList.remove("open");document.body.style.overflow=""}
 ["#sellTop","#sellHero","#sellBanner","#mobileSell"].forEach(s=>$(s).onclick=openModal);$$("[data-close]").forEach(b=>b.onclick=closeModal);$("#sellModal").onclick=e=>{if(e.target===$("#sellModal"))closeModal()};document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
-$("#sellForm").onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);let item={id:Date.now(),title:f.get("title"),category:f.get("category"),price:+f.get("price"),size:"Unique",condition:"Article publié par un membre",description:f.get("description")||"",seller:"Toi",tag:"NOUVEAUTÉ",image:f.get("image")||"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80"};products.unshift(item);let saved=JSON.parse(localStorage.getItem("rewear-products")||"[]");saved.unshift(item);localStorage.setItem("rewear-products",JSON.stringify(saved));category="Tout";$$(".category-card").forEach(x=>x.classList.toggle("selected",x.dataset.category==="Tout"));e.target.reset();closeModal();render();toast("Ton article est ajouté à la vitrine !");$("#shop").scrollIntoView({behavior:"smooth"})};
+$("#sellForm").onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);let item={id:Date.now(),title:f.get("title"),category:f.get("category"),price:+f.get("price"),size:f.get("size")||"Non précisé",condition:f.get("condition")||"Bon état",city:f.get("city")||"Ouagadougou",description:f.get("description")||"",seller:"Vendeur",tag:"NOUVEAUTÉ",image:f.get("image")||"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80"};products.unshift(item);let saved=JSON.parse(localStorage.getItem("rewear-products")||"[]");saved.unshift(item);localStorage.setItem("rewear-products",JSON.stringify(saved));category="Tout";$$(".category-card").forEach(x=>x.classList.toggle("selected",x.dataset.category==="Tout"));e.target.reset();closeModal();render();toast("Ton article est ajouté à la vitrine !");$("#shop").scrollIntoView({behavior:"smooth"})};
 $("#newsletterForm").onsubmit=e=>{e.preventDefault();toast("Merci ! Tu es dans la liste REWEAR ✳");e.target.reset()};$("#menuBtn").onclick=()=>$("#mobileMenu").classList.toggle("open");$$(".mobile-menu a").forEach(a=>a.onclick=()=>$("#mobileMenu").classList.remove("open"));render();
 
 // Fiche détaillée d'un article — démonstration locale
@@ -39,3 +39,38 @@ $("#productGrid").addEventListener("click",e=>{
  if(e.target.closest("[data-fav]")||e.target.closest("[data-contact]"))return;
  const card=e.target.closest("[data-product]");if(card)openProductDetails(card.dataset.product);
 });
+
+/* REWEAR Burkina Faso : filtres locaux et messagerie de démonstration */
+const rewearBaseRender=render;
+render=function(){
+ rewearBaseRender();
+ const city=document.getElementById("cityFilter")?.value||"";
+ const min=Number(document.getElementById("minPrice")?.value||0);
+ const max=Number(document.getElementById("maxPrice")?.value||0);
+ let visible=0;
+ document.querySelectorAll("#productGrid .product-card").forEach(card=>{
+  const p=products.find(x=>String(x.id)===card.dataset.product);
+  const ok=p&&(!city||p.city===city)&&p.price>=min&&(!max||p.price<=max);
+  card.hidden=!ok;if(ok)visible++;
+ });
+ document.getElementById("emptyState").hidden=visible>0;
+};
+["cityFilter","minPrice","maxPrice"].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener(id==="cityFilter"?"change":"input",render)});
+function openConversation(id){
+ const p=products.find(x=>x.id===id);if(!p)return;
+ let layer=document.getElementById("rewearChat");
+ if(!layer){
+  layer=document.createElement("div");layer.id="rewearChat";layer.className="modal-backdrop";
+  layer.innerHTML='<div class="modal chat-modal"><button class="close-modal" data-chat-close>×</button><div class="eyebrow">MESSAGERIE REWEAR</div><h2 id="chatTitle">Discussion</h2><p class="modal-intro" id="chatProduct"></p><div id="chatMessages" class="chat-messages"></div><form id="chatForm"><input name="message" maxlength="500" required placeholder="Écris ton message…"><button class="primary-btn submit-btn">Envoyer</button></form><small class="demo-note">Démo locale : messages visibles uniquement sur cet appareil.</small></div>';
+  document.body.appendChild(layer);
+  layer.addEventListener("click",e=>{if(e.target===layer||e.target.closest("[data-chat-close]"))layer.classList.remove("open")});
+ }
+ const key="rewear-chat-"+id;
+ document.getElementById("chatTitle").textContent="Contacter "+(p.seller||"le vendeur");
+ document.getElementById("chatProduct").textContent=p.title+" · "+money(p.price)+" · "+(p.city||"Burkina Faso");
+ const paint=()=>{const arr=JSON.parse(localStorage.getItem(key)||"[]");document.getElementById("chatMessages").innerHTML=arr.map(m=>'<p class="chat-bubble">'+escapeHtml(m)+'</p>').join("")||'<p class="chat-empty">Écris au vendeur au sujet de cette annonce.</p>';};
+ document.getElementById("chatForm").onsubmit=e=>{e.preventDefault();const value=new FormData(e.target).get("message").trim();if(!value)return;const arr=JSON.parse(localStorage.getItem(key)||"[]");arr.push(value);localStorage.setItem(key,JSON.stringify(arr));e.target.reset();paint();};
+ paint();layer.classList.add("open");
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-contact]");if(b){e.preventDefault();e.stopImmediatePropagation();openConversation(Number(b.dataset.contact));}},true);
+render();

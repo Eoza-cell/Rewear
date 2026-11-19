@@ -70,3 +70,19 @@ footer{padding:28px 8%;border-top:1px solid var(--line)}
  .newsletter{margin:0 5% 50px;padding:27px 21px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+
+/* Product detail experience */
+.product-card{cursor:pointer}
+.product-card .heart,.product-card .contact-btn{cursor:pointer}
+.detail-modal .detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.detail-modal .detail-photo{width:100%;aspect-ratio:4/5;object-fit:cover;background:#e5e8df}
+.detail-modal .detail-copy{padding-top:8px}
+.detail-modal .detail-price{font-size:23px;font-weight:800;color:var(--green);margin:12px 0}
+.detail-modal .detail-description{font-size:12px;line-height:1.8;color:var(--muted)}
+.detail-modal .detail-meta{font-size:10px;color:var(--muted);padding:12px 0;border-top:1px solid var(--line);margin-top:15px}
+.detail-modal .detail-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.detail-modal .detail-actions button{padding:12px 14px;border:0;font-size:10px;font-weight:800}
+.detail-modal .detail-contact{background:var(--green);color:white}
+.detail-modal .detail-fav{background:var(--lime);color:var(--green)}
+@media(max-width:650px){.detail-modal .detail-layout{grid-template-columns:1fr}.detail-modal .detail-photo{max-height:260px;aspect-ratio:16/9}.detail-modal .detail-copy{padding-top:0}}

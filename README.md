@@ -1,92 +1,45 @@
-# REWEAR — application mobile (Expo / React Native)
+# REWEAR
 
-REWEAR est un prototype de marketplace : vêtements, chaussures, accessoires et autres objets.
+**Acheter. Vendre. Échanger.**
 
-## Tester rapidement sur Android avec Expo Go
+REWEAR est une vitrine web de marketplace dédiée aux vêtements, chaussures, accessoires et objets du quotidien. Une expérience simple, élégante et responsive, pensée d'abord pour le marché de Ouagadougou.
 
-Le projet utilise **Expo SDK 54**. Expo Go doit être compatible avec ce SDK.
+## Voir le site
 
-### Depuis un téléphone Android uniquement
-1. Installe Expo Go depuis https://expo.dev/go et sélectionne la version Android compatible avec **SDK 54** si l'application du Play Store n'est pas compatible.
-2. Ouvre https://snack.expo.dev/ dans le navigateur.
-3. Crée un nouveau Snack et remplace le contenu de `App.js` par celui du fichier `App.js` de ce dépôt.
-4. Attends le chargement, puis ouvre le projet dans Expo Go avec le QR code ou le lien affiché.
+🌐 **[Ouvrir REWEAR](https://eoza-cell.github.io/Rewear/)**
 
-Le Snack est une copie de test : les modifications faites dans Snack ne sont pas automatiquement enregistrées dans GitHub.
+## Ce que propose le site
 
-### Depuis un ordinateur ou un terminal compatible
-Clone le dépôt, puis exécute :
+- Une page d'accueil moderne avec une identité visuelle REWEAR.
+- Des catégories pour parcourir les articles.
+- Un catalogue avec recherche et tri par prix.
+- Des favoris enregistrés dans le navigateur.
+- Des fiches produits avec prix en FCFA.
+- Un formulaire de démonstration pour publier un article.
+- Une mise en page adaptée aux téléphones, tablettes et ordinateurs.
 
-```bash
-npm install
-npx expo start --tunnel
-```
+## Technologies
 
-Scanne le QR code avec Expo Go. Le mode tunnel est utile lorsque le téléphone et l'ordinateur ne sont pas sur le même réseau.
+Le site est construit avec **HTML, CSS et JavaScript**, sans application mobile ni installation nécessaire.
 
-## Vérifier la configuration
+Les fichiers du site se trouvent dans le dossier `docs/` :
+- `docs/index.html` — structure de la page.
+- `docs/style.css` — design et mise en page.
+- `docs/script.js` — recherche, filtres, favoris et annonces de démonstration.
 
-```bash
-npx expo-doctor
-npx expo install --fix
-```
+## Publication avec GitHub Pages
 
-N'exécute `expo install --fix` que si Expo Doctor signale des versions incompatibles.
+Dans le dépôt GitHub :
 
-## Générer un APK Android
+1. Ouvre **Settings → Pages**.
+2. Dans **Build and deployment**, choisis **Deploy from a branch**.
+3. Sélectionne la branche `main` et le dossier `/docs`.
+4. Enregistre.
 
-L'APK est un fichier installable. Ce n'est pas la même chose qu'Expo Go.
+Le site sera disponible ici : **https://eoza-cell.github.io/Rewear/**
 
-```bash
-npm install
-npx eas-cli@latest login
-npx eas-cli@latest build:configure
-npx eas-cli@latest build -p android --profile preview
-```
+## À propos de la démonstration
 
-Le profil `preview` dans `eas.json` produit un APK distribuable pour les tests. La compilation se fait dans le cloud Expo. Le lien de téléchargement apparaît à la fin du build.
+REWEAR est actuellement une vitrine front-end. Les annonces ajoutées et les favoris restent enregistrés dans le navigateur de l'appareil utilisé. Les comptes, la messagerie entre utilisateurs, les photos hébergées et les paiements ne sont pas encore connectés à un serveur.
 
-## Fonctionnalités actuellement en démonstration
-
-- Catalogue, recherche et catégories
-- Favoris et fiches articles
-- Formulaire de publication local
-- Conversations simulées
-- Profil vendeur
-- Exemples d'abonnements Free / Plus / Pro / Business
-
-## Limites à connaître avant un lancement public
-
-Ce dépôt est un **prototype front-end**, pas encore une marketplace prête à accueillir de vrais clients :
-- Les comptes et annonces ne sont pas synchronisés entre téléphones.
-- Les conversations sont simulées.
-- Les photos ne sont pas encore téléversées vers un serveur.
-- Aucun paiement réel ni abonnement payant n'est activé.
-- Les tarifs affichés sont des exemples, pas des prix validés.
-
-Avant le lancement, il faudra connecter et sécuriser une base de données, l'authentification, le stockage des images, la messagerie, la modération, les signalements et un prestataire de paiement. Les règles de sécurité Supabase doivent être vérifiées et testées avant toute mise en production.
-
-Ne publie pas d'adresse personnelle ni de numéro privé dans les annonces. Prévois des rencontres dans des lieux publics et demande l'aide d'un adulte responsable pour les démarches de paiement ou de publication officielle.
-
-## Identité
-
-- Nom : REWEAR
-- Signature : Acheter. Vendre. Échanger.
-- Marché pilote envisagé : Ouagadougou, puis extension progressive.
-
-
-## Site web REWEAR
-
-Une vitrine web responsive est disponible dans le dossier `docs/` :
-- Accueil mode avec bannières et ruban défilant
-- Catégories horizontales déroulantes
-- Recherche, tri par prix et favoris
-- Cartes produits et formulaire de publication de démonstration
-
-### Activer GitHub Pages
-
-Dans GitHub : **Settings → Pages → Build and deployment → Deploy from a branch**, sélectionne `main` puis le dossier `/docs`, et enregistre. Le site sera publié à l'adresse :
-
-https://eoza-cell.github.io/Rewear/
-
-> La vitrine est actuellement une démonstration front-end : les annonces et favoris créés depuis le navigateur restent enregistrés sur cet appareil. Les comptes, paiements, photos hébergées et conversations réelles nécessitent un backend connecté et sécurisé.
+**REWEAR — Le style circule.**

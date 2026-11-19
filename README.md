@@ -73,3 +73,20 @@ Ne publie pas d'adresse personnelle ni de numéro privé dans les annonces. Pré
 - Nom : REWEAR
 - Signature : Acheter. Vendre. Échanger.
 - Marché pilote envisagé : Ouagadougou, puis extension progressive.
+
+
+## Site web REWEAR
+
+Une vitrine web responsive est disponible dans le dossier `docs/` :
+- Accueil mode avec bannières et ruban défilant
+- Catégories horizontales déroulantes
+- Recherche, tri par prix et favoris
+- Cartes produits et formulaire de publication de démonstration
+
+### Activer GitHub Pages
+
+Dans GitHub : **Settings → Pages → Build and deployment → Deploy from a branch**, sélectionne `main` puis le dossier `/docs`, et enregistre. Le site sera publié à l'adresse :
+
+https://eoza-cell.github.io/Rewear/
+
+> La vitrine est actuellement une démonstration front-end : les annonces et favoris créés depuis le navigateur restent enregistrés sur cet appareil. Les comptes, paiements, photos hébergées et conversations réelles nécessitent un backend connecté et sécurisé.

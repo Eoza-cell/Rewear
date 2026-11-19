@@ -1,25 +1,25 @@
 const productsSeed=[
-{id:1,title:"Veste denim vintage",category:"Vêtements",price:8500,size:"M",condition:"Très bon état",seller:"Aïcha",city:"Ouagadougou",tag:"COUP DE CŒUR",image:"https://images.unsplash.com/photo-1543076447-215ad9ba6923?w=700&q=85"},
-{id:2,title:"Sac en cuir camel",category:"Accessoires",price:12000,size:"Unique",condition:"Excellent état",seller:"Mariam",city:"Bobo-Dioulasso",tag:"PIÈCE UNIQUE",image:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&q=85"},
-{id:3,title:"Sneakers rétro",category:"Chaussures",price:18000,size:"39",condition:"Très bon état",seller:"Yanis",city:"Ouagadougou",tag:"BON PLAN",image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=85"},
-{id:4,title:"Chemise lin naturel",category:"Vêtements",price:6500,size:"L",condition:"Comme neuf",seller:"Inès",city:"Koudougou",tag:"SELECTION",image:"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=700&q=85"},
-{id:5,title:"Lunettes soleil rétro",category:"Accessoires",price:4500,size:"Unique",condition:"Bon état",seller:"Kader",city:"Ouagadougou",tag:"PETIT PRIX",image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=700&q=85"},
-{id:6,title:"Baskets minimalistes",category:"Chaussures",price:14500,size:"40",condition:"Excellent état",seller:"Sonia",city:"Bobo-Dioulasso",tag:"COUP DE CŒUR",image:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700&q=85"},
-{id:7,title:"Pull doux oversize",category:"Vêtements",price:7000,size:"XL",condition:"Très bon état",seller:"Fatou",city:"Ouahigouya",tag:"SELECTION",image:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=700&q=85"},
-{id:8,title:"Lampe design",category:"Maison",price:9500,size:"Unique",condition:"Bon état",seller:"Nadia",city:"Ouagadougou",tag:"TROUVAILLE",image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=700&q=85"}
+{id:1,title:"Veste denim vintage",category:"Vêtements",price:8500,size:"M",condition:"Très bon état",seller:"Aïcha",city:"Ouagadougou",tag:"COUP DE CŒUR",image:""},
+{id:2,title:"Sac en cuir camel",category:"Accessoires",price:12000,size:"Unique",condition:"Excellent état",seller:"Mariam",city:"Bobo-Dioulasso",tag:"PIÈCE UNIQUE",image:""},
+{id:3,title:"Sneakers rétro",category:"Chaussures",price:18000,size:"39",condition:"Très bon état",seller:"Yanis",city:"Ouagadougou",tag:"BON PLAN",image:""},
+{id:4,title:"Chemise lin naturel",category:"Vêtements",price:6500,size:"L",condition:"Comme neuf",seller:"Inès",city:"Koudougou",tag:"SELECTION",image:""},
+{id:5,title:"Lunettes soleil rétro",category:"Accessoires",price:4500,size:"Unique",condition:"Bon état",seller:"Kader",city:"Ouagadougou",tag:"PETIT PRIX",image:""},
+{id:6,title:"Baskets minimalistes",category:"Chaussures",price:14500,size:"40",condition:"Excellent état",seller:"Sonia",city:"Bobo-Dioulasso",tag:"COUP DE CŒUR",image:""},
+{id:7,title:"Pull doux oversize",category:"Vêtements",price:7000,size:"XL",condition:"Très bon état",seller:"Fatou",city:"Ouahigouya",tag:"SELECTION",image:""},
+{id:8,title:"Lampe design",category:"Maison",price:9500,size:"Unique",condition:"Bon état",seller:"Nadia",city:"Ouagadougou",tag:"TROUVAILLE",image:""}
 ];
 const $=s=>document.querySelector(s);const $$=s=>document.querySelectorAll(s);
 let products=[...productsSeed,...JSON.parse(localStorage.getItem("rewear-products")||"[]")];let favorites=JSON.parse(localStorage.getItem("rewear-favs")||"[]");let category="Tout",onlyFav=false;
-const money=n=>new Intl.NumberFormat("fr-FR").format(n)+" FCFA";
+const money=n=>new Intl.NumberFormat("fr-FR").format(n)+" FCFA";\nfunction artClass(category){return ({Vêtements:"mode",Chaussures:"shoes",Accessoires:"accessoires",Maison:"maison",Électronique:"tech",Livres:"livres"})[category]||"autres"}
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2400)}
-function render(){let q=$("#searchInput").value.toLowerCase(),sort=$("#sortSelect").value;let list=products.filter(p=>(category==="Tout"||p.category===category)&&(!onlyFav||favorites.includes(p.id))&&(p.title+" "+p.category+" "+p.seller).toLowerCase().includes(q));if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);$("#productGrid").innerHTML=list.map(p=>`<article class="product-card" data-product="${p.id}"><div class="product-image"><img src="${p.image||"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80"}" alt="${p.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80'"><span class="product-tag">${p.tag||"NOUVEAUTÉ"}</span><button class="heart ${favorites.includes(p.id)?"active":""}" data-fav="${p.id}" aria-label="Ajouter aux favoris">${favorites.includes(p.id)?"♥":"♡"}</button></div><div class="product-info"><div class="product-line"><h3>${escapeHtml(p.title)}</h3><span class="product-price">${money(p.price)}</span></div><div class="product-meta">${p.size} · ${p.condition||"Bon état"}</div><div class="product-bottom"><span class="seller">Par ${escapeHtml(p.seller||"Membre REWEAR")}</span><button class="contact-btn" data-contact="${p.id}">Contacter ↗</button></div></div></article>`).join("");$("#emptyState").hidden=list.length>0;$("#favCount").textContent=favorites.length;$$("[data-fav]").forEach(b=>b.onclick=()=>toggleFav(+b.dataset.fav));$$("[data-contact]").forEach(b=>b.onclick=()=>toast("La messagerie sera activée avec ton compte REWEAR."))}
+function render(){let q=$("#searchInput").value.toLowerCase(),sort=$("#sortSelect").value;let list=products.filter(p=>(category==="Tout"||p.category===category)&&(!onlyFav||favorites.includes(p.id))&&(p.title+" "+p.category+" "+p.seller).toLowerCase().includes(q));if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);$("#productGrid").innerHTML=list.map(p=>`<article class="product-card" data-product="${p.id}"><div class="product-image">${p.image?`<img src="${p.image}" alt="${escapeHtml(p.title)}" loading="lazy">`:`<div class="bf-art bf-${artClass(p.category)}"><span>REWEAR</span><b>${escapeHtml(p.category)}</b><small>🇧🇫 · TROUVAILLE LOCALE</small></div>`}<span class="product-tag">${p.tag||"NOUVEAUTÉ"}</span><button class="heart ${favorites.includes(p.id)?"active":""}" data-fav="${p.id}" aria-label="Ajouter aux favoris">${favorites.includes(p.id)?"♥":"♡"}</button></div><div class="product-info"><div class="product-line"><h3>${escapeHtml(p.title)}</h3><span class="product-price">${money(p.price)}</span></div><div class="product-meta">${p.size} · ${p.condition||"Bon état"}</div><div class="product-bottom"><span class="seller">Par ${escapeHtml(p.seller||"Membre REWEAR")}</span><button class="contact-btn" data-contact="${p.id}">Contacter ↗</button></div></div></article>`).join("");$("#emptyState").hidden=list.length>0;$("#favCount").textContent=favorites.length;$$("[data-fav]").forEach(b=>b.onclick=()=>toggleFav(+b.dataset.fav));$$("[data-contact]").forEach(b=>b.onclick=()=>toast("La messagerie sera activée avec ton compte REWEAR."))}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function toggleFav(id){favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];localStorage.setItem("rewear-favs",JSON.stringify(favorites));render()}
 $$(".category-card").forEach(b=>b.onclick=()=>{$$(".category-card").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");category=b.dataset.category;onlyFav=false;$("#favFilter").classList.remove("active");render();$("#shop").scrollIntoView({behavior:"smooth"})});
 $("#searchInput").oninput=render;$("#sortSelect").onchange=render;$("#favFilter").onclick=()=>{onlyFav=!onlyFav;$("#favFilter").classList.toggle("active",onlyFav);render()};$("#favNav").onclick=()=>{onlyFav=true;$("#favFilter").classList.add("active");render();$("#shop").scrollIntoView({behavior:"smooth"})};$("#searchToggle").onclick=()=>{$("#searchInput").focus();$("#shop").scrollIntoView({behavior:"smooth"})};$("#viewAll").onclick=()=>{$("#searchInput").value="";category="Tout";onlyFav=false;$$(".category-card").forEach(x=>x.classList.toggle("selected",x.dataset.category==="Tout"));$("#favFilter").classList.remove("active");render()};
 function openModal(){$("#sellModal").classList.add("open");document.body.style.overflow="hidden"}function closeModal(){$("#sellModal").classList.remove("open");document.body.style.overflow=""}
 ["#sellTop","#sellHero","#sellBanner","#mobileSell"].forEach(s=>$(s).onclick=openModal);$$("[data-close]").forEach(b=>b.onclick=closeModal);$("#sellModal").onclick=e=>{if(e.target===$("#sellModal"))closeModal()};document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
-$("#sellForm").onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);let item={id:Date.now(),title:f.get("title"),category:f.get("category"),price:+f.get("price"),size:f.get("size")||"Non précisé",condition:f.get("condition")||"Bon état",city:f.get("city")||"Ouagadougou",description:f.get("description")||"",seller:"Vendeur",tag:"NOUVEAUTÉ",image:f.get("image")||"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=80"};products.unshift(item);let saved=JSON.parse(localStorage.getItem("rewear-products")||"[]");saved.unshift(item);localStorage.setItem("rewear-products",JSON.stringify(saved));category="Tout";$$(".category-card").forEach(x=>x.classList.toggle("selected",x.dataset.category==="Tout"));e.target.reset();closeModal();render();toast("Ton article est ajouté à la vitrine !");$("#shop").scrollIntoView({behavior:"smooth"})};
+$("#sellForm").onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);let item={id:Date.now(),title:f.get("title"),category:f.get("category"),price:+f.get("price"),size:f.get("size")||"Non précisé",condition:f.get("condition")||"Bon état",city:f.get("city")||"Ouagadougou",description:f.get("description")||"",seller:"Vendeur",tag:"NOUVEAUTÉ",image:f.get("image")||window.rewearUploadedImage||""};products.unshift(item);let saved=JSON.parse(localStorage.getItem("rewear-products")||"[]");saved.unshift(item);localStorage.setItem("rewear-products",JSON.stringify(saved));category="Tout";$$(".category-card").forEach(x=>x.classList.toggle("selected",x.dataset.category==="Tout"));e.target.reset();window.rewearUploadedImage="";closeModal();render();toast("Ton article est ajouté à la vitrine !");$("#shop").scrollIntoView({behavior:"smooth"})};
 $("#newsletterForm").onsubmit=e=>{e.preventDefault();toast("Merci ! Tu es dans la liste REWEAR ✳");e.target.reset()};$("#menuBtn").onclick=()=>$("#mobileMenu").classList.toggle("open");$$(".mobile-menu a").forEach(a=>a.onclick=()=>$("#mobileMenu").classList.remove("open"));render();
 
 // Fiche détaillée d'un article — démonstration locale
@@ -74,3 +74,67 @@ function openConversation(id){
 }
 document.addEventListener("click",e=>{const b=e.target.closest("[data-contact]");if(b){e.preventDefault();e.stopImmediatePropagation();openConversation(Number(b.dataset.contact));}},true);
 render();
+
+/* Profil de démonstration + connexion Puter */
+const accountModal=document.getElementById("accountModal");
+const profileKey="rewear-profile";
+let rewearUser=JSON.parse(localStorage.getItem(profileKey)||"null");
+function updateAccountUI(){
+ const btn=document.getElementById("accountBtn"),status=document.getElementById("accountStatus");
+ if(rewearUser){btn.textContent=rewearUser.name||"Mon compte";status.textContent="Connecté : "+(rewearUser.name||"Membre REWEAR")+" · "+(rewearUser.city||"Burkina Faso");document.getElementById("profileName").value=rewearUser.name||"";document.getElementById("profileCity").value=rewearUser.city||"Ouagadougou";document.getElementById("puterSignOut").hidden=false;}
+ else{btn.textContent="Connexion";status.textContent="Tu peux créer un profil local ou te connecter avec Puter.";document.getElementById("puterSignOut").hidden=true;}
+}
+document.getElementById("accountBtn").addEventListener("click",()=>accountModal.classList.add("open"));
+document.querySelector("[data-account-close]").addEventListener("click",()=>accountModal.classList.remove("open"));
+accountModal.addEventListener("click",e=>{if(e.target===accountModal)accountModal.classList.remove("open")});
+document.getElementById("puterSignIn").addEventListener("click",async()=>{
+ const status=document.getElementById("accountStatus");status.textContent="Connexion à Puter en cours…";
+ try{
+  if(!window.puter)throw new Error("Puter.js ne s'est pas chargé. Vérifie ta connexion internet.");
+  await puter.auth.signIn();
+  const user=await puter.auth.getUser();
+  rewearUser={...(rewearUser||{}),puterUsername:user.username||user.name||"Membre Puter",name:document.getElementById("profileName").value.trim()||user.username||"Membre REWEAR",city:document.getElementById("profileCity").value,auth:"puter"};
+  localStorage.setItem(profileKey,JSON.stringify(rewearUser));updateAccountUI();toast("Connexion Puter réussie.");
+ }catch(err){status.textContent="Connexion non terminée : "+(err.message||"réessaie.");}
+});
+document.getElementById("saveProfile").addEventListener("click",()=>{
+ const name=document.getElementById("profileName").value.trim();if(!name){toast("Choisis un nom public.");return;}
+ rewearUser={name,city:document.getElementById("profileCity").value,auth:"local-demo"};localStorage.setItem(profileKey,JSON.stringify(rewearUser));updateAccountUI();toast("Profil enregistré sur cet appareil.");
+});
+document.getElementById("puterSignOut").addEventListener("click",async()=>{
+ try{if(window.puter&&puter.auth.isSignedIn())await puter.auth.signOut();}catch(e){}
+ rewearUser=null;localStorage.removeItem(profileKey);updateAccountUI();toast("Déconnexion effectuée.");
+});
+updateAccountUI();
+
+/* Assistant OUEDRAOGO — Clan Zenin, propulsé par Puter.js */
+const assistantPanel=document.getElementById("assistantPanel");
+document.getElementById("assistantLaunch").addEventListener("click",()=>assistantPanel.classList.toggle("open"));
+document.getElementById("assistantClose").addEventListener("click",()=>assistantPanel.classList.remove("open"));
+function addAssistantMessage(content,who){
+ const node=document.createElement("div");node.className="assistant-msg "+who;node.textContent=content;document.getElementById("assistantMessages").appendChild(node);document.getElementById("assistantMessages").scrollTop=999999;return node;
+}
+document.getElementById("assistantForm").addEventListener("submit",async e=>{
+ e.preventDefault();const input=document.getElementById("assistantInput"),question=input.value.trim();if(!question)return;
+ addAssistantMessage(question,"user");input.value="";const waiting=addAssistantMessage("OUEDRAOGO réfléchit…","bot");
+ try{
+  if(!window.puter)throw new Error("Puter.js ne s'est pas chargé. Recharge la page.");
+  const system="Tu es OUEDRAOGO, l'assistant IA officiel de REWEAR, marketplace créée par le Clan Zenin pour le Burkina Faso. Réponds en français simple, naturel et utile. Aide à rechercher des articles, rédiger des annonces, expliquer les catégories, donner des conseils d'achat et de vente prudents. Le marché cible est le Burkina Faso, les prix sont en FCFA et les villes incluent Ouagadougou, Bobo-Dioulasso, Koudougou, Ouahigouya, Banfora, Kaya, Fada N'Gourma, Tenkodogo, Gaoua et Dori. Ne prétends jamais voir les stocks, annonces, paiements ou livraisons en temps réel. N'invente pas de vendeurs ni de disponibilité. Ne demande jamais d'adresse personnelle, de numéro privé, de mot de passe ou de code. Conseille les utilisateurs de faire les échanges dans un lieu public et de solliciter un adulte de confiance pour les transactions importantes. Tu es transparent sur les limites du prototype.";
+  const response=await puter.ai.chat([{role:"system",content:system},{role:"user",content:question}],{model:"gpt-5.4-nano"});
+  let answer=response?.message?.content??response?.text??response;
+  if(Array.isArray(answer))answer=answer.map(x=>x.text||"").join("\n");
+  waiting.textContent=String(answer||"Je n'ai pas reçu de réponse. Réessaie.");
+ }catch(err){waiting.textContent="Je n'ai pas pu répondre : "+(err.message||"service indisponible")+". Réessaie plus tard.";}
+});
+
+/* Ajout d'une photo depuis la galerie du téléphone, compressée pour la démo locale */
+const photoField=document.querySelector('#sellForm input[name="photoFile"]');
+if(photoField)photoField.addEventListener("change",()=>{
+ const file=photoField.files&&photoField.files[0];if(!file)return;
+ if(!file.type.startsWith("image/")){toast("Choisis une image.");return;}
+ const reader=new FileReader();reader.onload=()=>{
+  const img=new Image();img.onload=()=>{
+   const scale=Math.min(1,900/Math.max(img.width,img.height));const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);window.rewearUploadedImage=canvas.toDataURL("image/jpeg",.72);toast("Photo prête pour ton annonce.");
+  };img.src=reader.result;
+ };reader.readAsDataURL(file);
+});

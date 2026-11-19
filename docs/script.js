@@ -91,12 +91,18 @@ accountModal.addEventListener("click",e=>{if(e.target===accountModal)accountModa
 document.getElementById("puterSignIn").addEventListener("click",async()=>{
  const status=document.getElementById("accountStatus");status.textContent="Connexion à Puter en cours…";
  try{
-  if(!window.puter)throw new Error("Puter.js ne s'est pas chargé. Vérifie ta connexion internet.");
-  await puter.auth.signIn();
+  if(!window.puter)throw new Error("Puter.js ne s'est pas chargé. Vérifie ta connexion internet puis actualise la page.");
+  if(puter.auth.isSignedIn && !puter.auth.isSignedIn()){
+   if(puter.ui && typeof puter.ui.authenticateWithPuter==="function"){
+    await puter.ui.authenticateWithPuter();
+   }else{
+    await puter.auth.signIn();
+   }
+  }
   const user=await puter.auth.getUser();
   rewearUser={...(rewearUser||{}),puterUsername:user.username||user.name||"Membre Puter",name:document.getElementById("profileName").value.trim()||user.username||"Membre REWEAR",city:document.getElementById("profileCity").value,auth:"puter"};
   localStorage.setItem(profileKey,JSON.stringify(rewearUser));updateAccountUI();toast("Connexion Puter réussie.");
- }catch(err){status.textContent="Connexion non terminée : "+(err.message||"réessaie.");}
+ }catch(err){status.textContent="Connexion impossible : "+(err.msg||err.message||err.error||"autorise la fenêtre de connexion Puter puis réessaie.");}
 });
 document.getElementById("saveProfile").addEventListener("click",()=>{
  const name=document.getElementById("profileName").value.trim();if(!name){toast("Choisis un nom public.");return;}

@@ -1,45 +1,31 @@
-# REWEAR
+# REWEAR Burkina Faso
 
 **Acheter. Vendre. Échanger.**
 
-REWEAR est une vitrine web de marketplace dédiée aux vêtements, chaussures, accessoires et objets du quotidien. Une expérience simple, élégante et responsive, pensée d'abord pour le marché de Ouagadougou.
+REWEAR est une marketplace web pensée pour le Burkina Faso : vêtements, chaussures, accessoires, téléphones, informatique, maison, livres et autres objets. Les prix sont affichés en FCFA.
 
-## Voir le site
+## Site web
+https://eoza-cell.github.io/Rewear/
 
-🌐 **[Ouvrir REWEAR](https://eoza-cell.github.io/Rewear/)**
-
-## Ce que propose le site
-
-- Une page d'accueil moderne avec une identité visuelle REWEAR.
-- Des catégories pour parcourir les articles.
-- Un catalogue avec recherche et tri par prix.
-- Des favoris enregistrés dans le navigateur.
-- Des fiches produits avec prix en FCFA.
-- Un formulaire de démonstration pour publier un article.
-- Une mise en page adaptée aux téléphones, tablettes et ordinateurs.
+## Fonctionnalités de la vitrine
+- Catalogue et catégories.
+- Recherche par nom, catégorie et vendeur.
+- Filtre par ville et fourchette de prix en FCFA.
+- Tri par prix croissant ou décroissant.
+- Favoris enregistrés dans le navigateur.
+- Fiches produits et formulaire de publication.
+- Villes proposées : Ouagadougou, Bobo-Dioulasso, Koudougou, Ouahigouya, Banfora, Kaya, Fada N'Gourma, Tenkodogo, Gaoua et Dori.
+- Messagerie de démonstration enregistrée localement sur l'appareil.
 
 ## Technologies
+HTML, CSS et JavaScript. Le site est publié avec GitHub Pages depuis le dossier `docs/`.
 
-Le site est construit avec **HTML, CSS et JavaScript**, sans application mobile ni installation nécessaire.
+## Publication
+Dans GitHub : **Settings → Pages → Deploy from a branch**, sélectionne `main` puis `/docs`.
 
-Les fichiers du site se trouvent dans le dossier `docs/` :
-- `docs/index.html` — structure de la page.
-- `docs/style.css` — design et mise en page.
-- `docs/script.js` — recherche, filtres, favoris et annonces de démonstration.
+## Limites actuelles
+Cette version est un prototype front-end. Les annonces, favoris et messages sont stockés localement dans le navigateur : ils ne sont pas partagés entre appareils. Les comptes, profils vendeurs vérifiés, photos hébergées, messagerie en temps réel, livraison et paiements ne sont pas encore connectés à un backend. Aucun paiement n'est encaissé sur ce site.
 
-## Publication avec GitHub Pages
+Avant un lancement public, il faudra connecter une base de données sécurisée, l'authentification, le stockage d'images, la modération, les signalements et un prestataire de paiement adapté au Burkina Faso. Prévoir des consignes de sécurité pour les rencontres et les transactions.
 
-Dans le dépôt GitHub :
-
-1. Ouvre **Settings → Pages**.
-2. Dans **Build and deployment**, choisis **Deploy from a branch**.
-3. Sélectionne la branche `main` et le dossier `/docs`.
-4. Enregistre.
-
-Le site sera disponible ici : **https://eoza-cell.github.io/Rewear/**
-
-## À propos de la démonstration
-
-REWEAR est actuellement une vitrine front-end. Les annonces ajoutées et les favoris restent enregistrés dans le navigateur de l'appareil utilisé. Les comptes, la messagerie entre utilisateurs, les photos hébergées et les paiements ne sont pas encore connectés à un serveur.
-
-**REWEAR — Le style circule.**
+**REWEAR — Le style circule au Burkina Faso.**
